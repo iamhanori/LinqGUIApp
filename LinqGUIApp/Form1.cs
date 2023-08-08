@@ -21,7 +21,9 @@ namespace LinqGUIApp
             new Product() { Name = "빔 프로젝터", Price = 170000 },
             new Product() { Name = "맥북", Price = 1500000 },
             new Product() { Name = "영양제", Price = 28900 },
-            new Product() { Name = "칸쵸", Price = 1200 }
+            new Product() { Name = "칸쵸", Price = 1200 },
+            new Product() { Name = "시리얼", Price = 1200 },
+            new Product() { Name = "마이쮸", Price = 800 }
         };
         public Form1()
         {
@@ -35,22 +37,29 @@ namespace LinqGUIApp
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            productBindingSource.DataSource = from item in products                                              
+                                              orderby item.Name
+                                              select item;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+            private void button2_Click(object sender, EventArgs e)
         {
-
+            productBindingSource.DataSource = from item in products
+                                              where item.Price >= 30000
+                                              orderby item.Price descending
+                                              select item;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            productBindingSource.DataSource = from item in products                                           
+                                              orderby item.Name descending
+                                              select item;
         }
     }
 }
